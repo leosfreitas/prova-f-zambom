@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/artigo")
+@RequestMapping("/artigos")
 public class ArtigosController {
 
     @Autowired
