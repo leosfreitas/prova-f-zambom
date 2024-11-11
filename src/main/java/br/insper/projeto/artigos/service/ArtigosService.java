@@ -106,6 +106,11 @@ public class ArtigosService {
             throw new IllegalArgumentException("Token JWT inválido ou usuário não encontrado.");
         }
 
+        String papel = achaUsuario(jwtToken).getPapel();
+        if (!"ADMIN".equals(papel) || !"DEVELOPER".equals(papel)) {
+            throw new IllegalArgumentException("Usuário sem permissão para deletar artigos.");
+        }
+
         return artigosRepository.findById(id);
     }
 
@@ -114,6 +119,11 @@ public class ArtigosService {
 
         if (email == null) {
             throw new IllegalArgumentException("Token JWT inválido ou usuário não encontrado.");
+        }
+
+        String papel = achaUsuario(jwtToken).getPapel();
+        if (!"ADMIN".equals(papel) || !"DEVELOPER".equals(papel)) {
+            throw new IllegalArgumentException("Usuário sem permissão para deletar artigos.");
         }
 
         return artigosRepository.findAll();
